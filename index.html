@@ -129,7 +129,7 @@
                     })   
                     
                     function novoAtividade(atividades) {
-                        $.post('http://localhost:3000/atividades', atividades)
+                        $.post('https://tasksbruno.herokuapp.com/atividades', atividades)
                     }
 
                     function apagaAtiv() {
@@ -142,7 +142,7 @@
 
                     function getAtividades() {
                         $.get(
-                            'http://localhost:3000/atividades',
+                            'https://tasksbruno.herokuapp.com/atividades',
                             (atividades) => { atividades.forEach(listarAtividades) }
                         )
                     }
