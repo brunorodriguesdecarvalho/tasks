@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Atividades</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script 
+            src="https://code.jquery.com/jquery-3.4.1.min.js" 
+            crossorigin="anonymous">
+        </script>
+        <script 
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" 
+            crossorigin="anonymous">
+        </script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>Atividades</h1>
+            <div class="grupo">
+                <h2>Atividades Registradas</h2>
+                <div id="Ativ"></div>
+            </div>
+            <br>
+            <div class="grupo">
+                <h2>Nova Atividade</h2>
+                <form>
+                    <div class="linha">
+                        <div class="celula">Título:</div>
+                        <div class="celula entrada">
+                            <input type="text" id="ativNome" placeholder="Preencher com um nome de referência rápida">
+                        </div> 
+                    </div>
+                    <div class="linha">
+                        <div class="celula">Status Atual:</div>
+                        <div class="celula entrada">
+                            <select id="ativStat">
+                                <option>Não Iniciado</option>
+                                <option>Em Andamento</option>
+                                <option>Atrasado</option>
+                                <option>Concluído</option>
+                                <option>Cancelado</option>
+                            </select>
+                        </div> 
+                    </div>
+                    <div class="linha">
+                        <div class="celula">Relacionado a iniciativa:</div>
+                        <div class="celula entrada">
+                            <select id="ativIni">
+                                <option>Não atribuído</option>
+                                <option>Opção 1 - Financeiro</option>
+                                <option>Opção 2 - FATEC</option>
+                                <option>Opção 3 - Viver de uma maneira feliz</option>
+                            </select>
+                        </div> 
+                    </div>
+                    <div class="linha">
+                        <div class="celula">Descrição:</div>
+                        <div class="celula entrada">
+                            <textarea id="ativDesc"></textarea>
+                        </div> 
+                    </div>
+                    <div class="linha">
+                        <div class="celula">Motivação:</div>
+                        <div class="celula entrada">
+                            <textarea id="ativMot"></textarea>
+                        </div> 
+                    </div>
+                    <div class="linha">
+                        <div class="celula">Riscos:</div>
+                        <div class="celula entrada">
+                            <textarea id="ativRisk"></textarea>
+                        </div> 
+                    </div>
+                    <div class="linha">
+                        <div class="celula">
+                            <div class="celula">Criação:</div>
+                            <div class="celula entrada">
+                                <input type="date" id="ativDataCria" value="">
+                            </div> 
+                        </div>
+                        <div class="celula">
+                            <div class="celula">Prazo:</div>
+                            <div class="celula entrada">
+                                <input type="date" id="ativDataFim" value="">
+                            </div> 
+                        </div>
+                        <div class="linha">
+                            <div class="celula">
+                                <button type="submit" id="enviar">
+                                    Gravar
+                                </button>
+                            </div>
+                            <div class="celula">
+                                <button type="reset" id="limpar">   
+                                    Novo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <script>
+
+                    $(() => {
+                        $('#enviar').click(() => {
+                            var atividades = { 
+                                ativNome: $("#ativNome").val(), 
+                                ativIni: $("#ativIni").val(),
+                                ativStat: $("#ativStat").val(),
+                                ativDesc: $("#ativDesc").val(),
+                                ativMot: $("#ativMot").val(),
+                                ativRisk: $("#ativRisk").val(),
+                                ativDataCria: $("#ativDataCria").val(),
+                                ativDataFim: $("#ativDataFim").val()
+                            }
+                            novoAtividade(atividades)
+                        })
+
+                        $('#excluir').click(() => {
+                            var ativItem = db.model('collativs', atividades)
+                            var query = { name: 'Corrigir' }
+                            ativItem.deleteOne(query, function (err, result) {
+                                if (err) {console.log("error query");
+                                } else {console.log(result)}
+                            })
+                            apagaAtiv()
+                        })
+                    })   
+                    
+                    function novoAtividade(atividades) {
+                        $.post('http://localhost:3000/atividades', atividades)
+                    }
+
+                    function apagaAtiv() {
+                            var id = '5e4ad8570484431dc4934ab5'
+                            collativs.findByIdAndDelete(id, function (err) {
+                                if(err) console.log(err);
+                            console.log("Successful deletion");
+                        });
+                    }
+
+                    function getAtividades() {
+                        $.get(
+                            'http://localhost:3000/atividades',
+                            (atividades) => { atividades.forEach(listarAtividades) }
+                        )
+                    }
+
+                    getAtividades()
+
+                    function listarAtividades(atividades){
+                        $("#Ativ").append(`
+                            <ul>
+                                <h3><strong>${atividades.ativNome}</strong></h3>
+                                <li><strong>ID: </strong>${atividades._id}</li>
+                                <li><strong>Status atual: </strong>${atividades.ativStat}</li>
+                                <li><strong>Iniciativa associada: </strong>${atividades.ativIni}</li>
+                                <li><strong>Início: </strong>${atividades.ativDataCria}</li>
+                                <li><strong>Fim: </strong>${atividades.objDataFim}</li>
+                                <li><strong>Descrição: </strong>${atividades.ativDesc}</li>
+                                <li><strong>Motivo(s): </strong>${atividades.ativMot}</li>
+                                <li><strong>Risco(s): </strong>${atividades.ativRisk}</li>
+                                <li>
+                                    <button type="submit" id="excluir">
+                                        excluir
+                                    </button>
+                                </li>
+                                <li><a href="/index.html">Home</a></li>
+                            </ul>
+                            <br>
+                        `)
+                    }
+
+                    listarAtividades()
+                </script>
+            </div>
+        </div>
+    </body>
+</html>

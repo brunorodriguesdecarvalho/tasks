@@ -1,0 +1,55 @@
+body {
+    margin: 0px;
+}
+
+#app {
+    min-width: 100px;
+    max-width: 700px;
+    padding: 5px;
+    margin: 0 auto;
+}
+
+div .grupo{
+    border-radius: 4px;
+    padding: 10px;
+    border: 0.5px dotted grey;
+}
+
+div .linha{
+    padding: 0px;
+}
+
+div .celula{
+    display: inline-block;
+    margin: 0.5%;
+}
+
+div .entrada{
+    width: 99%;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+input, textarea{
+    width: 99%;
+}
+
+textarea {
+    height: 50px;
+}
+
+#enviar, #limpar, #excluir {
+    border: 0px;
+    color: white;
+    background-color: black;
+    width: 100px;
+    height: 25px;
+}
+
+select {
+    width: 100%;
+    height: 25px;
+}
+
