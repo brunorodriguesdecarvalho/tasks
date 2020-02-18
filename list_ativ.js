@@ -27,5 +27,3 @@ function listarAtividades(atividades) {
         <br>
     `)
 }
-
-getAtividades()
