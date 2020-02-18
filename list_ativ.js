@@ -15,7 +15,7 @@ function listarAtividades(atividades){
             <li><strong>Status atual: </strong>${atividades.ativStat}</li>
             <li><strong>Iniciativa associada: </strong>${atividades.ativIni}</li>
             <li><strong>Início: </strong>${atividades.ativDataCria}</li>
-            <li><strong>Fim: </strong>${atividades.objDataFim}</li>
+            <li><strong>Fim: </strong>${atividades.ativDataFim}</li>
             <li><strong>Descrição: </strong>${atividades.ativDesc}</li>
             <li><strong>Motivo(s): </strong>${atividades.ativMot}</li>
             <li><strong>Risco(s): </strong>${atividades.ativRisk}</li>
@@ -29,5 +29,3 @@ function listarAtividades(atividades){
         <br>
     `)
 }
-
-listarAtividades()
