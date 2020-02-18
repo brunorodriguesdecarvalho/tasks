@@ -44,7 +44,7 @@ function listarAtividades(atividades){
                 <button 
                     type="submit" 
                     id="excluir" 
-                    onclick="apagaAtiv.js">
+                    onclick="./apagaAtiv.js">
                     excluir
                 </button>
             </li>
