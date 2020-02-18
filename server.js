@@ -28,8 +28,17 @@ var dbModelAtiv = mongoose.model('collativs', {
 var atividades = []
 
 app.get('/atividades', (req, res) => {
-    dbModelAtiv.find({}, (err, atividades) => {
-        res.send(atividades)    
+    var busca = { ativStat: /^N/}
+    var ordem = { ativIni: 1, ativDataCria: -1, ativDataFim: -1}
+    dbModelAtiv
+        .find(busca, {projection: {_id: 0}})
+        .sort(ordem)
+        .toArray(function(err, atividades) {
+            if (err) throw err
+            else {
+                console.log("Resposta da busca: ", res)
+                res.send(atividades) 
+        }  
     })
 })
 
