@@ -4,7 +4,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 var idApagaAtiv = ObjectId("5e4b3e500e4e5b00179baf73")
 
-apagaAtividade = function apagaAtividade() {
+function apagaAt() {
     MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
         if (err) throw err
         console.log("MongoDB Conectado!")
@@ -18,3 +18,5 @@ apagaAtividade = function apagaAtividade() {
         })
     })
 }
+
+apagaAt()
