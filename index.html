@@ -19,17 +19,17 @@
         <div id="app">
             <h1>Atividades</h1>
             <div class="grupo">
-                <h2>Atividades Registradas</h2>
-                <div id="Ativ"></div>
-            </div>
-            <br>
-            <div class="grupo">
                 <h2>Nova Atividade</h2>
                 <form>
                     <div class="linha">
                         <div class="celula">Título:</div>
                         <div class="celula entrada">
-                            <input type="text" id="ativNome" placeholder="Preencher com um nome de referência rápida">
+                            <input 
+                                type="text" 
+                                id="ativNome" 
+                                placeholder="Preencher com um nome de referência rápida"
+                                required
+                            >
                         </div> 
                     </div>
                     <div class="linha">
@@ -49,9 +49,9 @@
                         <div class="celula entrada">
                             <select id="ativIni">
                                 <option>Não atribuído</option>
-                                <option>Opção 1 - Financeiro</option>
-                                <option>Opção 2 - FATEC</option>
-                                <option>Opção 3 - Viver de uma maneira feliz</option>
+                                <option>Atividades FATEC</option>
+                                <option>Criação PBSC</option>
+                                <option>Outras</option>
                             </select>
                         </div> 
                     </div>
@@ -99,10 +99,15 @@
                             </div>
                         </div>
                     </div>
-                </form>
                     <script src="form_ativ.js">
-                </script>
+                    </script>
+                </form>
             </div>
+            <br>
+            <div class="grupo">
+                <h2>Atividades Registradas</h2>
+                <div id="Ativ"></div>
+            </div>           
         </div>
     </body>
 </html>
