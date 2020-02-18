@@ -1,1 +1,3 @@
-window.alert("Oi, funcionei!")
+function alerta() {
+    window.alert("Oi, funcionei!")
+}

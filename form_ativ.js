@@ -41,12 +41,10 @@ function listarAtividades(atividades){
             <li><strong>Motivo(s): </strong>${atividades.ativMot}</li>
             <li><strong>Risco(s): </strong>${atividades.ativRisk}</li>
             <li>
-                <button 
-                    type="submit" 
-                    id="excluir" 
-                    onclick="./apagaAtiv.js">
+                <button id="excluir" onclick="javascript: alerta()">
                     excluir
                 </button>
+                <script src="src/alerta.js" type="text/javascript"></script>
             </li>
         </ul>
         <br>
