@@ -7,9 +7,23 @@ function getAtividades() {
 
 getAtividades()
 
+function deletar(chave) {
+    MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
+        if (err) throw err
+        console.log("Conectato via Mongo Client 2 ")
+        var dbo = dbpbsc.db("dbpbsc")
+        var busca = { _id: ObjectID(chave) }
+        dbo.collection("collativs").deleteOne(busca, function(err, res) {
+            if (err) throw err
+            console.log("Documento deletado! ", res)
+            dbpbsc.close()
+        })
+    })
+}
+
 function listarAtividades(atividades){
-    $("#Ativ").append(`
-        <ul>
+    $("#Ativ").append(
+        `<ul>
             <h3><strong>${atividades.ativNome}</strong></h3>
             <li><strong>ID: </strong>${atividades._id}</li>
             <li><strong>Status atual: </strong>${atividades.ativStat}</li>
@@ -20,8 +34,7 @@ function listarAtividades(atividades){
             <li><strong>Motivo(s): </strong>${atividades.ativMot}</li>
             <li><strong>Risco(s): </strong>${atividades.ativRisk}</li>
             <li>
-                <script src="src/apagaAtiv.js" type="text/javascript"></script>
-                <button id="excluir" onclick="javascript: apagaAt()">
+                <button id="excluir" onclick="javascript: deletar('${atividades._id}')">
                     excluir
                 </button>
             </li>

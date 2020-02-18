@@ -28,18 +28,12 @@ var dbModelAtiv = mongoose.model('collativs', {
 var atividades = []
 
 app.get('/atividades', (req, res) => {
-    var busca = { ativStat: /^N/}
-    var ordem = { ativIni: 1, ativDataCria: -1, ativDataFim: -1}
-    dbModelAtiv
-        .find(busca, {projection: {_id: 0}})
-        .sort(ordem)
-        .toArray(function(err, atividades) {
-            if (err) throw err
-            else {
-                console.log("Resposta da busca: ", res)
-                res.send(atividades) 
-        }  
-    })
+    var ordem = { ativIni: 1, ativDataFim: 1, ativDataCria: 1, ativStat: 1, ativNome: 1 }
+    var busca = 
+    dbModelAtiv.find(busca, (err, atividades) => {
+        if (err) throw err
+        res.send(atividades)    
+    }).sort(ordem)
 })
 
 app.post('/atividades', (req, res) => {
@@ -51,5 +45,23 @@ app.post('/atividades', (req, res) => {
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true}, (err) => {
     console.log('MongoDB ok.')
 })
+
+var MongoClient = require('mongodb').MongoClient
+var ObjectID = require('mongodb').ObjectID
+var url = "mongodb+srv://pbsc:wlmvccE6paAmpBNg@dbpbsc-mzrlo.mongodb.net/dbpbsc?retryWrites=true&w=majority";
+
+function deletar(chave) {
+    MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
+        if (err) throw err
+        console.log("Conectato via Mongo Client")
+        var dbo = dbpbsc.db("dbpbsc")
+        var busca = { _id: ObjectID(chave) }
+        dbo.collection("collativs").deleteOne(busca, function(err, res) {
+            if (err) throw err
+            console.log("Documento deletado! ", res)
+            dbpbsc.close()
+        })
+    })
+}
 
 http.listen(port, () => console.log(`App ok na porta ${port}!`))
