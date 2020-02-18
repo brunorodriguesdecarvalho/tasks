@@ -1,5 +1,3 @@
-var alerta = require('./alerta')
-
 $(() => {
     $('#enviar').click(() => {
         var atividades = { 
