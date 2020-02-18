@@ -12,16 +12,6 @@ $(() => {
         }
         novoAtividade(atividades)
     })
-
-    $('#excluir').click(() => {
-        var ativItem = db.model('collativs', atividades)
-        var query = { name: 'Corrigir' }
-        ativItem.deleteOne(query, function (err, result) {
-            if (err) {console.log("error query");
-            } else {console.log(result)}
-        })
-        apagaAtiv()
-    })
 })   
 
 function novoAtividade(atividades) {
