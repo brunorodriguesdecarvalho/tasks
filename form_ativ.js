@@ -1,3 +1,5 @@
+var alerta = require('./alerta')
+
 $(() => {
     $('#enviar').click(() => {
         var atividades = { 
@@ -28,13 +30,6 @@ function novoAtividade(atividades) {
     $.post('https://tasksbruno.herokuapp.com/atividades', atividades)
 }
 
-function apagaAtiv() {
-        var id = '5e4ad8570484431dc4934ab5'
-        collativs.findByIdAndDelete(id, function (err) {
-            if(err) console.log(err);
-        console.log("Successful deletion");
-    });
-}
 
 function getAtividades() {
     $.get(
@@ -58,11 +53,13 @@ function listarAtividades(atividades){
             <li><strong>Motivo(s): </strong>${atividades.ativMot}</li>
             <li><strong>Risco(s): </strong>${atividades.ativRisk}</li>
             <li>
-                <button type="submit" id="excluir">
+                <button 
+                    type="submit" 
+                    id="excluir" 
+                    onclick="apagaAtiv.js">
                     excluir
                 </button>
             </li>
-            <li><a href="/index.html">Home</a></li>
         </ul>
         <br>
     `)
