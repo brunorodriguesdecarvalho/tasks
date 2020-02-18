@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Atividades</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script 
+            src="https://code.jquery.com/jquery-3.4.1.min.js" 
+            crossorigin="anonymous">
+        </script>
+        <script 
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" 
+            crossorigin="anonymous">
+        </script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>Atividades</h1>
+            <div class="grupo">
+                <h2>Nova Atividade</h2>
+                <form>
+                    <div class="linha">
+                        <div class="celula">Título:</div>
+                        <div class="celula entrada">
+                            <input 
+                                type="text" 
+                                id="ativNome" 
+                                placeholder="Preencher com um nome de referência rápida"
+                                required
+                            >
+                        </div> 
+                    </div>
+                    <div class="linha">
+                        <div class="celula">Status Atual:</div>
+                        <div class="celula entrada">
+                            <select id="ativStat">
+                                <option>Não Iniciado</option>
+                                <option>Em Andamento</option>
+                                <option>Atrasado</option>
+                                <option>Concluído</option>
+                                <option>Cancelado</option>
+                            </select>
+                        </div> 
+                    </div>
+                    <div class="linha">
+                        <div class="celula">Relacionado a iniciativa:</div>
+                        <div class="celula entrada">
+                            <select id="ativIni">
+                                <option>Não atribuído</option>
+                                <option>Atividades FATEC</option>
+                                <option>Criação PBSC</option>
+                                <option>Outras</option>
+                            </select>
+                        </div> 
+                    </div>
+                    <div class="linha">
+                        <div class="celula">Descrição:</div>
+                        <div class="celula entrada">
+                            <textarea id="ativDesc"></textarea>
+                        </div> 
+                    </div>
+                    <div class="linha">
+                        <div class="celula">Motivação:</div>
+                        <div class="celula entrada">
+                            <textarea id="ativMot"></textarea>
+                        </div> 
+                    </div>
+                    <div class="linha">
+                        <div class="celula">Riscos:</div>
+                        <div class="celula entrada">
+                            <textarea id="ativRisk"></textarea>
+                        </div> 
+                    </div>
+                    <div class="linha">
+                        <div class="celula">
+                            <div class="celula">Criação:</div>
+                            <div class="celula entrada">
+                                <input type="date" id="ativDataCria" value="">
+                            </div> 
+                        </div>
+                        <div class="celula">
+                            <div class="celula">Prazo:</div>
+                            <div class="celula entrada">
+                                <input type="date" id="ativDataFim" value="">
+                            </div> 
+                        </div>
+                        <div class="linha">
+                            <div class="celula">
+                                <button type="submit" id="enviar">
+                                    Gravar
+                                </button>
+                            </div>
+                            <div class="celula">
+                                <button type="reset" id="limpar">   
+                                    Novo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <script src="form_ativ.js">
+                    </script>
+                </form>
+            </div>
+            <br>
+            <div class="grupo">
+                <h2>Atividades Registradas</h2>
+                <div id="Ativ"></div>
+            </div>           
+        </div>
+    </body>
+</html>
