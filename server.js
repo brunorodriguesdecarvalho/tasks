@@ -28,8 +28,8 @@ var dbModelAtiv = mongoose.model('collativs', {
 var atividades = []
 
 app.get('/atividades', (req, res) => {
-    var ordem = { ativIni: 1, ativDataFim: 1, ativDataCria: 1, ativStat: 1, ativNome: 1 }
-    var busca = 
+    var ordem = { ativStat: 1, ativIni: 1, ativDataFim: 1, ativDataCria: 1, ativNome: 1 }
+    var busca = { ativStat: {'$regex' : '^((?!Concluído).)*$', '$options' : 'i'} }
     dbModelAtiv.find(busca, (err, atividades) => {
         if (err) throw err
         res.send(atividades)    
