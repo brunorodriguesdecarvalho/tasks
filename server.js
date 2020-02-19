@@ -9,6 +9,9 @@ app.use(express.static('./'))
 app.use(bodyParser.json()) //usa o bodyparse importado para cuidar do JSON
 app.use(bodyParser.urlencoded({extended:false}))
 
+var cors = require('cors')
+app.use(cors())
+
 //link para o db, incluindo username e password
 var dbUrl = 'mongodb+srv://pbsc:wlmvccE6paAmpBNg@dbpbsc-mzrlo.mongodb.net/dbpbsc?retryWrites=true&w=majority'
 
@@ -42,6 +45,7 @@ app.get('/ragstatus', (req, res) => {
         dbo.collection("ragstatus").find({}, { projection: { _id: 0 } }).toArray(function (err, ragstatus) {
             if (err) throw err;
             res.send(ragstatus)
+            console.log("corpo do JSON: ", req.body)
             dbpbsc.close();
         })
     })
