@@ -51,4 +51,3 @@ function listarAtividades(atividades){
     `)
 }
 
-listarAtividades()

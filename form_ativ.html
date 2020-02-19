@@ -5,22 +5,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Atividades</title>
         <link rel="stylesheet" type="text/css" href="style.css">
-        <script 
-            src="https://code.jquery.com/jquery-3.4.1.min.js" 
-            crossorigin="anonymous">
-        </script>
-        <script 
-            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
-            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" 
-            crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        <script src="./src/form_ativ.js" type="text/javascript"></script>
+        <script>
+            let dropRAGstatus = $('#dropRAGstatus')
+            dropRAGstatus.empty()
+            
+            dropRAGstatus.append('<option selected=true disabled>Escolha um Status</option>')
+            dropRAGstatus.prop('selectedIndex', 0)
+
+            const url = "/ragstatus"
+
+            $.getJSON(url, function (ragstatus) {
+                $.each(ragstatus, function (key, entry){
+                    dropRAGstatus.append($('<option></option>').attr('value', entry.ragstatus).text(entry.ragstatus))
+                })
+            })
+
         </script>
     </head>
     <body>
         <div id="app">
             <a href="index.html">HOME</a> ou <a href="list_ativ.html">ATIVIDADES</a>
-            <h1>Atividades</h1>
+            <h1>Nova Atividade</h1>
             <div class="grupo">
-                <h2>Nova Atividade</h2>
                 <form>
                     <div class="linha">
                         <div class="celula">Título:</div>
@@ -36,27 +45,14 @@
                     <div class="linha">
                         <div class="celula">Status Atual:</div>
                         <div class="celula entrada">
-                            <select id="ativStat">
-                                <option>Não Iniciado</option>
-                                <option>Em Andamento</option>
-                                <option>Atrasado</option>
-                                <option>Concluído</option>
-                                <option>Cancelado</option>
-                            </select>
+                            <select id="dropRAGstatus"></select>
                         </div> 
                     </div>
                     <div class="linha">
                         <div class="celula">Relacionado a iniciativa:</div>
                         <div class="celula entrada">
-                            <select id="ativIni">
-                                <option>Não atribuído</option>
-                                <option>Controle de Finanças</option>
-                                <option>FATEC</option>
-                                <option>Saúde - Academia</option>
-                                <option>Saúde - Alimentação</option>
-                                <option>Saúde - Academia</option>
-                                <option>PBSC</option>
-                                <option>Outras</option>
+                            <select id="ragStatus">
+                                <option selected>Não atribuído</option>
                             </select>
                         </div> 
                     </div>
@@ -97,15 +93,8 @@
                                     Gravar
                                 </button>
                             </div>
-                            <div class="celula">
-                                <button type="reset" id="limpar">   
-                                    Novo
-                                </button>
-                            </div>
                         </div>
                     </div>
-                    <script src="form_ativ.js">
-                    </script>
                 </form>
             </div>         
         </div>

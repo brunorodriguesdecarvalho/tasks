@@ -12,8 +12,6 @@ app.use(bodyParser.urlencoded({extended:false}))
 //link para o db, incluindo username e password
 var dbUrl = 'mongodb+srv://pbsc:wlmvccE6paAmpBNg@dbpbsc-mzrlo.mongodb.net/dbpbsc?retryWrites=true&w=majority'
 
-var db = mongoose.connection
-
 //define o modelo  do objeto para o mongoose
 var dbModelAtiv = mongoose.model('collativs', {
     ativNome: String,
@@ -25,7 +23,6 @@ var dbModelAtiv = mongoose.model('collativs', {
     ativDataCria: Date,
     ativDataFim: Date,
 })
-var atividades = []
 
 app.get('/atividades', (req, res) => {
     var ordem = { ativStat: 1, ativIni: 1, ativDataFim: 1, ativDataCria: 1, ativNome: 1 }
@@ -36,17 +33,34 @@ app.get('/atividades', (req, res) => {
     }).sort(ordem)
 })
 
+app.get('/ragstatus', (req, res) => {
+    var MongoClient = require('mongodb').MongoClient;
+    MongoClient.connect(dbUrl, { useUnifiedTopology: true }, function (err, dbpbsc) {
+        if (err)
+            throw err;
+        var dbo = dbpbsc.db("dbpbsc");
+        dbo.collection("ragstatus").find({}, { projection: { _id: 0 } }).toArray(function (err, ragstatus) {
+            if (err) throw err;
+            res.send(ragstatus)
+            dbpbsc.close();
+        })
+    })
+})
+
 app.post('/atividades', (req, res) => {
     var atividades = new dbModelAtiv(req.body)
     var ativSalvo = atividades.save()
     console.log('Nova atividade salva no MongoDB.')
 })
 
-mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true}, (err) => {
+mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true}, function(err, dbpbsc) {
     console.log('MongoDB ok.')
 })
 
-var MongoClient = require('mongodb').MongoClient
+http.listen(port, () => console.log(`App ok na porta ${port}!`))
+
+
+/* var MongoClient = require('mongodb').MongoClient
 var ObjectID = require('mongodb').ObjectID
 var url = "mongodb+srv://pbsc:wlmvccE6paAmpBNg@dbpbsc-mzrlo.mongodb.net/dbpbsc?retryWrites=true&w=majority";
 
@@ -62,6 +76,4 @@ function deletar(chave) {
             dbpbsc.close()
         })
     })
-}
-
-http.listen(port, () => console.log(`App ok na porta ${port}!`))
+} */

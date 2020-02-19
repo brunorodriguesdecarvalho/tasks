@@ -53,4 +53,12 @@ select {
     height: 25px;
 }
 
-ul {list-style: none;}
+ul {
+    list-style: none;
+    padding-inline-start: 0px;
+    padding-inline-end: 0px;
+}
+
+li {
+    list-style: none;
+}
