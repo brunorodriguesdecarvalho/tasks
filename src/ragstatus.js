@@ -8,7 +8,7 @@ function getRAGstatus() {
 getRAGstatus()
 
 function listarRAGstatus(ragstat){
-    $("#ativRAGstatus").append(`
+    $("#ativStat").append(`
         <option>${ragstat.ragstatus}</option>
     `)
 }
