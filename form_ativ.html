@@ -30,14 +30,21 @@
                     <div class="linha">
                         <div class="celula">Status Atual:</div>
                         <div class="celula entrada">
-                            <select id="dropRAGstatus"></select>
+                            <select id="ativStat"></select>
                         </div> 
                     </div>
                     <div class="linha">
                         <div class="celula">Relacionado a iniciativa:</div>
                         <div class="celula entrada">
-                            <select id="ragStatus">
+                            <select id="ativIni">
                                 <option selected>Não atribuído</option>
+                                <option selected>PBSC</option>
+                                <option selected>FATEC</option>
+                                <option selected>Academia</option>
+                                <option selected>Alimentação</option>
+                                <option selected>Finanças</option>
+                                <option selected>Trabalho</option>
+                                <option selected>Outros</option>
                             </select>
                         </div> 
                     </div>
@@ -63,13 +70,13 @@
                         <div class="celula">
                             <div class="celula">Criação:</div>
                             <div class="celula entrada">
-                                <input type="date" id="ativDataCria" value="">
+                                <input type="date" id="ativDataCria" value="" required>
                             </div> 
                         </div>
                         <div class="celula">
                             <div class="celula">Prazo:</div>
                             <div class="celula entrada">
-                                <input type="date" id="ativDataFim" value="">
+                                <input type="date" id="ativDataFim" value="" required>
                             </div> 
                         </div>
                         <div class="linha">
@@ -84,7 +91,7 @@
             </div>         
         </div>
         <script>
-            var dropdown = document.getElementById('dropRAGstatus');
+            var dropdown = document.getElementById('ativStat');
             dropdown.length = 0
 
             let defaultOption = document.createElement('option');
