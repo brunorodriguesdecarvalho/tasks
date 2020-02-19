@@ -39,8 +39,7 @@ app.get('/atividades', (req, res) => {
 app.get('/ragstatus', (req, res) => {
     var MongoClient = require('mongodb').MongoClient;
     MongoClient.connect(dbUrl, { useUnifiedTopology: true }, function (err, dbpbsc) {
-        if (err)
-            throw err;
+        if (err) throw err;
         var dbo = dbpbsc.db("dbpbsc");
         dbo.collection("ragstatus").find({}, { projection: { _id: 0 } }).toArray(function (err, ragstatus) {
             if (err) throw err;
