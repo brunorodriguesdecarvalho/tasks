@@ -3,12 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Atividades</title>
+        <title>Nova Atividade</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
         <script src="./src/form_ativ.js" type="text/javascript"></script>
-        
     </head>
     <body>
         <div id="app">
@@ -95,7 +94,7 @@
             dropdown.length = 0
 
             let defaultOption = document.createElement('option');
-            defaultOption.text = 'Escolha um status-padrão';
+            defaultOption.text = Não atribuído';
 
             dropdown.add(defaultOption);
             dropdown.selectedIndex = 0;
