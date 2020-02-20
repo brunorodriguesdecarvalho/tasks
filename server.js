@@ -27,12 +27,32 @@ var dbModelAtiv = mongoose.model('collativs', {
     ativDataFim: Date,
 })
 
+var dbModelIni = mongoose.model('collinis', {
+    iniNome: String,
+    iniStat: String,
+    iniObj: String,
+    iniDesc: String,
+    iniMot: String,
+    iniRisk: String,
+    iniDataCria: Date,
+    iniDataFim: Date,
+})
+
 app.get('/atividades', (req, res) => {
     var ordem = { ativDataFim: 1, ativStat: 1, ativIni: 1, ativDataCria: 1, ativNome: 1 }
     var busca = { ativStat: {'$regex' : '^((?!3 - Concluído).)*$', '$options' : 'i'} }
     dbModelAtiv.find(busca, (err, atividades) => {
         if (err) throw err
         res.send(atividades)    
+    }).sort(ordem)
+})
+
+app.get('/iniciativas', (req, res) => {
+    var ordem = { iniDataFim: 1, iniStat: 1, iniObj: 1, iniDataCria: 1, iniNome: 1 }
+    var busca = { iniStat: {'$regex' : '^((?!3 - Concluído).)*$', '$options' : 'i'} }
+    dbModelAtiv.find(busca, (err, iniciativas) => {
+        if (err) throw err
+        res.send(iniciativas)    
     }).sort(ordem)
 })
 
@@ -54,6 +74,12 @@ app.post('/atividades', (req, res) => {
     var atividades = new dbModelAtiv(req.body)
     var ativSalvo = atividades.save()
     console.log('Nova atividade salva no MongoDB.')
+})
+
+app.post('/iniciativas', (req, res) => {
+    var iniciativas = new dbModelIni(req.body)
+    var iniSalvo = iniciativas.save()
+    console.log('Nova iniciativa salva no MongoDB.')
 })
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true}, function(err, dbpbsc) {
