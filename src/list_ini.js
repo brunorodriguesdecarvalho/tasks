@@ -23,17 +23,3 @@ function listarIniciativas(iniciativas){
         <br>
     `)
 }
-
-function deletar(chave) {
-    MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
-        if (err) throw err
-        console.log("Conectato via Mongo Client 2 ")
-        var dbo = dbpbsc.db("dbpbsc")
-        var busca = { _id: ObjectID(chave) }
-        dbo.collection("collinis").deleteOne(busca, function(err, res) {
-            if (err) throw err
-            console.log("Documento deletado! ", res)
-            dbpbsc.close()
-        })
-    })
-}
