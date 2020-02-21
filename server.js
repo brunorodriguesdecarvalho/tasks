@@ -50,7 +50,7 @@ app.get('/atividades', (req, res) => {
 app.get('/iniciativas', (req, res) => {
     /* var ordem = { iniDataFim: 1, iniStat: 1, iniObj: 1, iniDataCria: 1, iniNome: 1 } */
     var busca = /* { iniStat: {'$regex' : '^((?!3 - Concluído).)*$', '$options' : 'i'} } */
-    dbModelAtiv.find(busca, (err, iniciativas) => {
+    dbModelIni.find(busca, (err, iniciativas) => {
         if (err) throw err
         res.send(iniciativas)    
     })
