@@ -132,27 +132,25 @@ app.post('/objetivos', (req, res) => {
     console.log('Novo objetivo salvo no MongoDB.')
 })
 
+app.post('/deletaAtiv', (req, res) => {
+    var atividade = dbModelAtiv(req.body)
+    function deletar() {
+        MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
+            if (err) throw err
+            var dbo = dbpbsc.db("dbpbsc")
+            var busca = { _id: atividade }
+            dbo.collection("collativs").deleteOne(busca, function(err, res) {
+                if (err) throw err
+                console.log("Documento deletado! ", res)
+                dbpbsc.close()
+            })
+        })
+    }
+    deletar()
+})
+
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true}, function(err, dbpbsc) {
     console.log('MongoDB ok.')
 })
 
 http.listen(port, () => console.log(`App ok na porta ${port}!`))
-
-
-/* var MongoClient = require('mongodb').MongoClient
-var ObjectID = require('mongodb').ObjectID
-var url = "mongodb+srv://pbsc:wlmvccE6paAmpBNg@dbpbsc-mzrlo.mongodb.net/dbpbsc?retryWrites=true&w=majority";
-
-function deletar(chave) {
-    MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
-        if (err) throw err
-        console.log("Conectato via Mongo Client")
-        var dbo = dbpbsc.db("dbpbsc")
-        var busca = { _id: ObjectID(chave) }
-        dbo.collection("collativs").deleteOne(busca, function(err, res) {
-            if (err) throw err
-            console.log("Documento deletado! ", res)
-            dbpbsc.close()
-        })
-    })
-} */

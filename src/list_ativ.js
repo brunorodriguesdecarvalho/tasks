@@ -18,22 +18,8 @@ function listarAtividades(atividades){
             <li><strong>Motivo(s): </strong>${atividades.ativMot}</li>
             <li><strong>Risco(s): </strong>${atividades.ativRisk}</li>
             <li>Início: ${atividades.ativDataCria}</li>
-            <li>ID: ${atividades._id}</li>
+            <li id="${atividades._id}">ID: ${atividades._id}</li>
         </ul>
         <br>
     `)
-}
-
-function deletar(chave) {
-    MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
-        if (err) throw err
-        console.log("Conectato via Mongo Client 2 ")
-        var dbo = dbpbsc.db("dbpbsc")
-        var busca = { _id: ObjectID(chave) }
-        dbo.collection("collativs").deleteOne(busca, function(err, res) {
-            if (err) throw err
-            console.log("Documento deletado! ", res)
-            dbpbsc.close()
-        })
-    })
 }
