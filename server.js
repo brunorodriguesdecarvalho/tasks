@@ -82,7 +82,6 @@ app.get('/ragstatus', (req, res) => {
         dbo.collection("ragstatus").find({}, { projection: { _id: 0 } }).toArray(function (err, ragstatus) {
             if (err) throw err;
             res.send(ragstatus)
-            console.log("corpo do JSON: ", req.body)
             dbpbsc.close();
         })
     })
@@ -96,7 +95,6 @@ app.get('/listObj', (req, res) => {
         dbo.collection("collobjs").find({}, { projection: { _id: 0 } }).toArray(function (err, listObj) {
             if (err) throw err;
             res.send(listObj)
-            console.log("corpo do JSON: ", req.body)
             dbpbsc.close();
         })
     })
@@ -107,10 +105,9 @@ app.get('/listIni', (req, res) => {
     MongoClient.connect(dbUrl, { useUnifiedTopology: true }, function (err, dbpbsc) {
         if (err) throw err;
         var dbo = dbpbsc.db("dbpbsc");
-        dbo.collection("collinis").find({}, { projection: { _id: 0 } }).toArray(function (err, listIbj) {
+        dbo.collection("collinis").find({}, { projection: { _id: 0 } }).toArray(function (err, listIni) {
             if (err) throw err;
             res.send(listIni)
-            console.log("corpo do JSON: ", req.body)
             dbpbsc.close();
         })
     })
