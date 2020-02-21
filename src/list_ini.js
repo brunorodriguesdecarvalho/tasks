@@ -19,7 +19,14 @@ function listarIniciativas(iniciativas){
             <li><strong>Risco(s): </strong>${iniciativas.iniRisk}</li>
             <li>Início: ${iniciativas.iniDataCria}</li>
             <li>ID: ${iniciativas._id}</li>
+            <li><a href="#" onclick="hello()">Excluir</a></li>
         </ul>
         <br>
     `)
 }
+
+$(document).ready(function() {
+    window.hello = function() {
+      alert("oi");
+    }
+  });
