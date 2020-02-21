@@ -38,6 +38,17 @@ var dbModelIni = mongoose.model('collinis', {
     iniDataFim: Date,
 })
 
+var dbModelObj = mongoose.model('collobjs', {
+    objNome: String,
+    objStat: String,
+    objTema: String,
+    objDesc: String,
+    objMot: String,
+    objRisk: String,
+    objDataCria: Date,
+    objDataFim: Date,
+})
+
 app.get('/atividades', (req, res) => {
     var ordem = { ativDataFim: 1, ativStat: 1, ativIni: 1, ativDataCria: 1, ativNome: 1 }
     var busca = { ativStat: {'$regex' : '^((?!3 - Concluído).)*$', '$options' : 'i'} }
@@ -48,12 +59,19 @@ app.get('/atividades', (req, res) => {
 })
 
 app.get('/iniciativas', (req, res) => {
-    /* var ordem = { iniDataFim: 1, iniStat: 1, iniObj: 1, iniDataCria: 1, iniNome: 1 } */
-    var busca = /* { iniStat: {'$regex' : '^((?!3 - Concluído).)*$', '$options' : 'i'} } */
-    dbModelIni.find(busca, (err, iniciativas) => {
+    dbModelIni.find({}, (err, iniciativas) => {
         if (err) throw err
         res.send(iniciativas)    
     })
+})
+
+app.get('/objetivos', (req, res) => {
+    var ordem = { objDataFim: 1, objStat: 1, objTema: 1, objDataCria: 1, objNome: 1 }
+    var busca = { objStat: {'$regex' : '^((?!3 - Concluído).)*$', '$options' : 'i'} }
+    dbModelObj.find(busca, (err, objetivos) => {
+        if (err) throw err
+        res.send(objetivos)    
+    }).sort(ordem)
 })
 
 app.get('/ragstatus', (req, res) => {
@@ -70,6 +88,20 @@ app.get('/ragstatus', (req, res) => {
     })
 })
 
+app.get('/listObj', (req, res) => {
+    var MongoClient = require('mongodb').MongoClient;
+    MongoClient.connect(dbUrl, { useUnifiedTopology: true }, function (err, dbpbsc) {
+        if (err) throw err;
+        var dbo = dbpbsc.db("dbpbsc");
+        dbo.collection("collobjs").find({}, { projection: { _id: 0 } }).toArray(function (err, listObj) {
+            if (err) throw err;
+            res.send(listObj)
+            console.log("corpo do JSON: ", req.body)
+            dbpbsc.close();
+        })
+    })
+})
+
 app.post('/atividades', (req, res) => {
     var atividades = new dbModelAtiv(req.body)
     var ativSalvo = atividades.save()
@@ -80,6 +112,12 @@ app.post('/iniciativas', (req, res) => {
     var iniciativas = new dbModelIni(req.body)
     var iniSalvo = iniciativas.save()
     console.log('Nova iniciativa salva no MongoDB.')
+})
+
+app.post('/objetivos', (req, res) => {
+    var objetivos = new dbModelObj(req.body)
+    var objSalvo = objetivos.save()
+    console.log('Novo objetivo salvo no MongoDB.')
 })
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true}, function(err, dbpbsc) {

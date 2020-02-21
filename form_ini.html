@@ -35,16 +35,7 @@
                     <div class="linha">
                         <div class="celula">Relacionado ao objetivo:</div>
                         <div class="celula entrada">
-                            <select id="iniObj">
-                                <option selected>Não atribuído</option>
-                                <option selected>PBSC</option>
-                                <option selected>FATEC</option>
-                                <option selected>Academia</option>
-                                <option selected>Alimentação</option>
-                                <option selected>Finanças</option>
-                                <option selected>Trabalho</option>
-                                <option selected>Outros</option>
-                            </select>
+                            <select id="listObj"></select>
                         </div> 
                     </div>
                     <div class="linha">
@@ -105,6 +96,45 @@
             request.open('GET', url, true);
             
             fetch(url)
+                .then(
+                    function(response) {                    
+                        if (response.status !== 200) {
+                            console.warn('Erro, código: ' + response.status)
+                            return
+                        }
+
+                    response.json().then(function(data) {
+                        let option
+
+                        for (let i = 0; i < data.length; i++) {
+                            option = document.createElement('option');
+                            option.text = data[i].ragstatus;
+                            option.value = data[i].ragstatus;
+                            dropdown.add(option);
+                        }
+                    })
+                }
+            )
+            .catch(function(err) {
+                console.error("Erro de Fetch -", err)
+            })
+       
+            //Começo lista objetivos
+            var dropdownObj = document.getElementById('listObj');
+            dropdownObj.length = 0
+
+            let defaultOptionObj = document.createElement('option');
+            defaultOptionObj.text = 'Não atribuído';
+
+            dropdownObj.add(defaultOptionObj);
+            dropdownObj.selectedIndex = 0;
+
+            var urlObj = 'https://tasksbruno.herokuapp.com/listObj';
+
+            const requestObj = new XMLHttpRequest();
+            requestObj.open('GET', urlObj, true);
+            
+            fetch(urlObj)
                 .then(
                     function(response) {                    
                         if (response.status !== 200) {
