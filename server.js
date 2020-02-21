@@ -79,7 +79,8 @@ app.get('/ragstatus', (req, res) => {
     MongoClient.connect(dbUrl, { useUnifiedTopology: true }, function (err, dbpbsc) {
         if (err) throw err;
         var dbo = dbpbsc.db("dbpbsc");
-        dbo.collection("ragstatus").find({}, { projection: { _id: 0 } }).toArray(function (err, ragstatus) {
+        var ordemIni = {ragstatus: 1}
+        dbo.collection("ragstatus").find({}, { projection: { _id: 0 } }).sort(ordemIni).toArray(function (err, ragstatus) {
             if (err) throw err;
             res.send(ragstatus)
             dbpbsc.close();
