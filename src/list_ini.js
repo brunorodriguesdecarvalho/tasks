@@ -11,7 +11,7 @@ function listarIniciativas(iniciativas){
     $("#Ini").append(
         `<ul>
             <h2><strong>${iniciativas.iniNome}</strong></h2>
-            <li><strong>Objetivo associado: </strong>${iniciativas.iniObj}</li>
+            <li><strong>Objetivo associado: </strong>${iniciativas.iniObj}</li> 
             <li><strong>Status atual: </strong>${iniciativas.iniStat}</li>
             <li><strong>Prazo: </strong>${iniciativas.iniDataFim}</li>
             <li><strong>Descrição: </strong>${iniciativas.iniDesc}</li>

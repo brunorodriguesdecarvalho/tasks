@@ -1,5 +1,5 @@
 //Começo lista objetivos - para Iniciativas
-var dropdownObj = document.getElementById('listObj');
+var dropdownObj = document.getElementById('iniObj');
 dropdownObj.length = 0
 
 let defaultOptionObj = document.createElement('option');
