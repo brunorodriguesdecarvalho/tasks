@@ -9,7 +9,7 @@ getAtividades()
 
 function listarAtividades(atividades){
     $("#Ativ").append(
-        `<ul>
+        `<ul class="item">
             <h2><strong>${atividades.ativNome}</strong></h2>
             <li><strong>Iniciativa associada: </strong>${atividades.ativIni}</li>
             <li><strong>Status atual: </strong>${atividades.ativStat}</li>

@@ -9,7 +9,7 @@ getIniciativas()
 
 function listarIniciativas(iniciativas){
     $("#Ini").append(
-        `<ul>
+        `<ul class="item">
             <h2><strong>${iniciativas.iniNome}</strong></h2>
             <li><strong>Objetivo associado: </strong>${iniciativas.iniObj}</li> 
             <li><strong>Status atual: </strong>${iniciativas.iniStat}</li>

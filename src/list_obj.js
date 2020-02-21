@@ -9,7 +9,7 @@ getObjetivos()
 
 function listarObjetivos(objetivos){
     $("#Obj").append(
-        `<ul>
+        `<ul class="item">
             <h2><strong>${objetivos.objNome}</strong></h2>
             <li><strong>Tema associado: </strong>${objetivos.objTema}</li>
             <li><strong>Status atual: </strong>${objetivos.objStat}</li>
