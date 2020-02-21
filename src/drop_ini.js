@@ -8,7 +8,7 @@ defaultOptionIni.text = 'Não atribuído';
 dropdownIni.add(defaultOptionIni);
 dropdownIni.selectedIndex = 0;
 
-var urlIni = 'http://localhost:3000/listIni';
+var urlIni = 'http://tasksbruno.herokuapp.com/listIni';
 
 const requestIni = new XMLHttpRequest();
 requestIni.open('GET', urlIni, true);
