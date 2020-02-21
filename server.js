@@ -58,6 +58,15 @@ app.get('/atividades', (req, res) => {
     }).sort(ordem)
 })
 
+app.get('/atividades/ok', (req, res) => {
+    var ordem = { ativDataFim: 1, ativStat: 1, ativIni: 1, ativDataCria: 1, ativNome: 1 }
+    var busca = { ativStat: '3 - Concluído' }
+    dbModelAtiv.find(busca, (err, atividades) => {
+        if (err) throw err
+        res.send(atividades)    
+    }).sort(ordem)
+})
+
 app.get('/iniciativas', (req, res) => {
     dbModelIni.find({}, (err, iniciativas) => {
         if (err) throw err
