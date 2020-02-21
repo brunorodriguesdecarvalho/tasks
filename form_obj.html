@@ -3,16 +3,16 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Nova Iniciativa</title>
+        <title>Novo Objetivo</title>
         <link rel="stylesheet" type="text/css" href="style.css">
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-        <script src="./src/form_ini.js" type="text/javascript"></script>
+        <script src="./src/form_obj.js" type="text/javascript"></script>
     </head>
     <body>
         <div id="app">
-            <a href="index.html">HOME</a> ou <a href="list_ini.html">INICIATIVAS</a>
-            <h1>Nova Iniciativa</h1>
+            <a href="index.html">HOME</a> ou <a href="list_obj.html">OBJETIVOS</a>
+            <h1>Novo Objetivo</h1>
             <div class="grupo">
                 <form>
                     <div class="linha">
@@ -20,7 +20,7 @@
                         <div class="celula entrada">
                             <input 
                                 type="text" 
-                                id="iniNome" 
+                                id="objNome" 
                                 placeholder="Preencher com um nome de referência rápida"
                                 required
                             >
@@ -29,44 +29,51 @@
                     <div class="linha">
                         <div class="celula">Status Atual:</div>
                         <div class="celula entrada">
-                            <select id="iniStat"></select>
+                            <select id="objStat"></select>
                         </div> 
                     </div>
                     <div class="linha">
-                        <div class="celula">Relacionado ao objetivo:</div>
+                        <div class="celula">Relacionado ao tema:</div>
                         <div class="celula entrada">
-                            <select id="listObj"></select>
+                            <select id="objTema">
+                                <option selected disabled>Não atribuído</option>
+                                <option selected>Finanças</option>
+                                <option selected>Carreira</option>
+                                <option selected>Saúde</option>
+                                <option selected>Relacionamentos</option>
+                                <option selected>Outros</option>
+                            </select>
                         </div> 
                     </div>
                     <div class="linha">
                         <div class="celula">Descrição:</div>
                         <div class="celula entrada">
-                            <textarea id="iniDesc"></textarea>
+                            <textarea id="objDesc"></textarea>
                         </div> 
                     </div>
                     <div class="linha">
                         <div class="celula">Motivação:</div>
                         <div class="celula entrada">
-                            <textarea id="iniMot"></textarea>
+                            <textarea id="objMot"></textarea>
                         </div> 
                     </div>
                     <div class="linha">
                         <div class="celula">Riscos:</div>
                         <div class="celula entrada">
-                            <textarea id="iniRisk"></textarea>
+                            <textarea id="objRisk"></textarea>
                         </div> 
                     </div>
                     <div class="linha">
                         <div class="celula">
                             <div class="celula">Criação:</div>
                             <div class="celula entrada">
-                                <input type="date" id="iniDataCria" value="" required>
+                                <input type="date" id="objDataCria" value="" required>
                             </div> 
                         </div>
                         <div class="celula">
                             <div class="celula">Prazo:</div>
                             <div class="celula entrada">
-                                <input type="date" id="iniDataFim" value="" required>
+                                <input type="date" id="objDataFim" value="" required>
                             </div> 
                         </div>
                         <div class="linha">
@@ -81,7 +88,7 @@
             </div>         
         </div>
         <script>
-            var dropdown = document.getElementById('iniStat');
+            var dropdown = document.getElementById('objStat');
             dropdown.length = 0
 
             let defaultOption = document.createElement('option');
@@ -96,45 +103,6 @@
             request.open('GET', url, true);
             
             fetch(url)
-                .then(
-                    function(response) {                    
-                        if (response.status !== 200) {
-                            console.warn('Erro, código: ' + response.status)
-                            return
-                        }
-
-                    response.json().then(function(data) {
-                        let option
-
-                        for (let i = 0; i < data.length; i++) {
-                            option = document.createElement('option');
-                            option.text = data[i].ragstatus;
-                            option.value = data[i].ragstatus;
-                            dropdown.add(option);
-                        }
-                    })
-                }
-            )
-            .catch(function(err) {
-                console.error("Erro de Fetch -", err)
-            })
-       
-            //Começo lista objetivos
-            var dropdownObj = document.getElementById('listObj');
-            dropdownObj.length = 0
-
-            let defaultOptionObj = document.createElement('option');
-            defaultOptionObj.text = 'Não atribuído';
-
-            dropdownObj.add(defaultOptionObj);
-            dropdownObj.selectedIndex = 0;
-
-            var urlObj = 'https://tasksbruno.herokuapp.com/listObj';
-
-            const requestObj = new XMLHttpRequest();
-            requestObj.open('GET', urlObj, true);
-            
-            fetch(urlObj)
                 .then(
                     function(response) {                    
                         if (response.status !== 200) {
