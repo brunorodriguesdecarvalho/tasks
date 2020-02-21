@@ -26,8 +26,8 @@ fetch(urlIni)
 
             for (let iIni = 0; iIni < dataIni.length; iIni++) {
                 optionIni = document.createElement('option');
-                optionIni.text = dataIni[iIni].objNome;
-                optionIni.value = dataIni[iIni].objNome;
+                optionIni.text = dataIni[iIni].iniNome;
+                optionIni.value = dataIni[iIni].iniNome;
                 dropdownIni.add(optionIni);
             }
         })
