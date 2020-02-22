@@ -1,5 +1,5 @@
 //Começo lista iniciativas - para Iniciativas
-var dropdownIni = document.getElementById('listIni');
+var dropdownIni = document.getElementById('ativIni');
 dropdownIni.length = 0
 
 let defaultOptionIni = document.createElement('option');
