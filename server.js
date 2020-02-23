@@ -68,10 +68,11 @@ app.get('/atividades/ok', (req, res) => {
 })
 
 app.get('/iniciativas', (req, res) => {
+    var ordem = { iniObj: 1, iniDataFim: 1, iniStat: 1,  iniDataCria: 1, iniNome: 1 }
     dbModelIni.find({}, (err, iniciativas) => {
         if (err) throw err
         res.send(iniciativas)    
-    })
+    }).sort(ordem)
 })
 
 app.get('/objetivos', (req, res) => {
