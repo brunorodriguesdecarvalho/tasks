@@ -164,6 +164,42 @@ app.post('/deletaAtiv', (req, res) => {
     deletar()
 })
 
+app.post('/deletaIni', (req, res) => {
+    var iniciativa = new dbModelIni(req.body)
+    console.log("Chegou no servidor o pedidod para apagar ID " + iniciativa._id)
+    function deletar() {
+        MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
+            if (err) throw err
+            var dbo = dbpbsc.db("dbpbsc")
+            var busca = { _id: ObjectID(iniciativa._id) }
+            dbo.collection("collinis").deleteOne(busca, function(err, res) {
+                if (err) throw err
+                console.log("ID " + iniciativa._id + " deletado! ", res)
+                dbpbsc.close()
+            })
+        })
+    }
+    deletar()
+})
+
+app.post('/deletaObj', (req, res) => {
+    var objetivo = new dbModelObj(req.body)
+    console.log("Chegou no servidor o pedidod para apagar ID " + objetivo._id)
+    function deletar() {
+        MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
+            if (err) throw err
+            var dbo = dbpbsc.db("dbpbsc")
+            var busca = { _id: ObjectID(objetivo._id) }
+            dbo.collection("collobjs").deleteOne(busca, function(err, res) {
+                if (err) throw err
+                console.log("ID " + objetivo._id + " deletado! ", res)
+                dbpbsc.close()
+            })
+        })
+    }
+    deletar()
+})
+
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true}, function(err, dbpbsc) {
     console.log('MongoDB ok.')
 })

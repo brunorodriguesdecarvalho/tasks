@@ -38,6 +38,13 @@ function listarIniciativas(iniciativas){
             <li><strong>Motivo(s): </strong>${iniciativas.iniMot}</li>
             <li><strong>Risco(s): </strong>${iniciativas.iniRisk}</li>
             <li>Início: ${iniciativas.iniDataCria}</li>
+            <br>
+            <li>
+                <a href="#" onclick="javascript: excluirIniciativa('${iniciativas._id}')">
+                    <i class="material-icons" style="font-size: 31px">&#xe92b;</i>
+                    <strong>Excluir</strong>
+                </a>
+            </li>
         </ul>
         <script>
             function hello() {

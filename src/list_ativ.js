@@ -38,8 +38,12 @@ function listarAtividades(atividades){
             <li><strong>Risco(s): </strong>${atividades.ativRisk}</li>
             <li>Início: ${atividades.ativDataCria}</li>
             <li>ID: ${atividades._id}</li>
+            <br>
             <li>
-                <a href="#" onclick="javascript: excluirAtividade('${atividades._id}')">Excluir</a>
+                <a href="#" onclick="javascript: excluirAtividade('${atividades._id}')">
+                    <i class="material-icons" style="font-size: 31px">&#xe92b;</i>
+                    <strong>Excluir</strong>
+                </a>
             </li>
         </ul>
         <script>
