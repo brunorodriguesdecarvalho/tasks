@@ -9,25 +9,25 @@ getAtividades()
 
 function listarAtividades(atividades){
     $("#Ativ").append(`
-        <div class="linha">
-            <div id="bola-${atividades._id}" class="celula" style="
-                border: none; 
-                height: 28px; 
-                width: 28px; 
-                border-radius:30px;
-                vertical-align: middle;
-            ">
-            </div>
-            <div class="celula" style="
-                vertical-align: middle;
-                font-size: 28px; 
-                font-weight: bold;
-                margin-block-start: 0em;
-                margin-block-end: 0em;">
-                ${atividades.ativNome}
-            </div>
-        </div>
-        <ul class="item">       
+        <ul class="item">
+            <li><div class="linha">
+                <div id="bola-${atividades._id}" class="celula" style="
+                    border: none; 
+                    height: 28px; 
+                    width: 28px; 
+                    border-radius:30px;
+                    vertical-align: middle;
+                ">
+                </div>
+                <div class="celula" style="
+                    vertical-align: middle;
+                    font-size: 28px; 
+                    font-weight: bold;
+                    margin-block-start: 0em;
+                    margin-block-end: 0em;">
+                    ${atividades.ativNome}
+                </div>
+            </div></li>   
             <li><strong>Iniciativa associada: </strong>${atividades.ativIni}</li>
             <li id="Stat-${atividades.ativStat}" data-value="${atividades.ativStat}">
                 <strong>Status atual: </strong>${atividades.ativStat}

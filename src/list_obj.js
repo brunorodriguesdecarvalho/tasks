@@ -9,25 +9,28 @@ getObjetivos()
 
 function listarObjetivos(objetivos){
     $("#Obj").append(`
-        <div class="linha">
-            <div id="bola-${objetivos._id}" class="celula" style="
-                border: none; 
-                height: 28px; 
-                width: 28px; 
-                border-radius:30px;
-                vertical-align: middle;
-            ">
-            </div>
-            <div class="celula" style="vertical-align: middle;">
-                <p style="
-                    font-size: 28px; 
-                    font-weight: bold;
-                    margin-block-start: 0em;
-                    margin-block-end: 0em;
-                ">${objetivos.objNome}</p>
-            </div>
-        </div>
+        
         <ul class="item">
+            <li>
+                <div class="linha">
+                    <div id="bola-${objetivos._id}" class="celula" style="
+                        border: none; 
+                        height: 28px; 
+                        width: 28px; 
+                        border-radius:30px;
+                        vertical-align: middle;
+                    ">
+                    </div>
+                    <div class="celula" style="vertical-align: middle;">
+                        <p style="
+                            font-size: 28px; 
+                            font-weight: bold;
+                            margin-block-start: 0em;
+                            margin-block-end: 0em;
+                        ">${objetivos.objNome}</p>
+                    </div>
+                </div>
+            </li>
             <li><strong>Tema associado: </strong>${objetivos.objTema}</li>
             <li id="Stat-${objetivos.objStat}" data-value="${objetivos.objStat}">
                 <strong>Status atual: </strong>
