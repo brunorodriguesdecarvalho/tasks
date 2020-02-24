@@ -59,7 +59,7 @@ app.get('/atividades', (req, res) => {
 })
 
 app.get('/atividades/ok', (req, res) => {
-    var ordem = { ativDataFim: 1, ativStat: 1, ativIni: 1, ativDataCria: 1, ativNome: 1 }
+    var ordem = { ativDataFim: -1, ativDataCria: -1, ativNome: 1 }
     var busca = { ativStat: '3 - Concluído' }
     dbModelAtiv.find(busca, (err, atividades) => {
         if (err) throw err
@@ -68,7 +68,7 @@ app.get('/atividades/ok', (req, res) => {
 })
 
 app.get('/iniciativas', (req, res) => {
-    var ordem = { iniObj: 1, iniDataFim: 1, iniStat: 1,  iniDataCria: 1, iniNome: 1 }
+    var ordem = { iniObj: -1, iniDataFim: -1, iniStat: 1,  iniDataCria: 1, iniNome: 1 }
     dbModelIni.find({}, (err, iniciativas) => {
         if (err) throw err
         res.send(iniciativas)    
@@ -77,8 +77,7 @@ app.get('/iniciativas', (req, res) => {
 
 app.get('/objetivos', (req, res) => {
     var ordem = { objDataFim: 1, objStat: 1, objTema: 1, objDataCria: 1, objNome: 1 }
-    var busca = { objStat: {'$regex' : '^((?!3 - Concluído).)*$', '$options' : 'i'} }
-    dbModelObj.find(busca, (err, objetivos) => {
+    dbModelObj.find({}, (err, objetivos) => {
         if (err) throw err
         res.send(objetivos)    
     }).sort(ordem)
@@ -198,6 +197,120 @@ app.post('/deletaObj', (req, res) => {
         })
     }
     deletar()
+})
+
+app.post('/concluiAtiv', (req, res) => {
+    var atividade = new dbModelAtiv(req.body)
+    console.log("Chegou no servidor o pedidod para concluir ID " + atividade._id)
+    function concluir() {
+        MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
+            if (err) throw err
+            var dbo = dbpbsc.db("dbpbsc")
+            var busca = { _id: ObjectID(atividade._id) }
+            var atualizar = { $set: { ativStat: '3 - Concluído' } }
+            dbo.collection("collativs").findOneAndUpdate(busca, atualizar, function(err, res) {
+                if (err) throw err
+                console.log("ID " + atividade._id + " marcado como concluído! ", res)
+                dbpbsc.close()
+            })
+        })
+    }
+    concluir()
+})
+
+app.post('/concluiIni', (req, res) => {
+    var iniciativa = new dbModelIni(req.body)
+    console.log("Chegou no servidor o pedidod para concluir ID " + iniciativa._id)
+    function concluir() {
+        MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
+            if (err) throw err
+            var dbo = dbpbsc.db("dbpbsc")
+            var busca = { _id: ObjectID(iniciativa._id) }
+            var atualizar = { $set: { iniStat: '3 - Concluído' } }
+            dbo.collection("collinis").findOneAndUpdate(busca, atualizar, function(err, res) {
+                if (err) throw err
+                console.log("ID " + iniciativa._id + " marcado como concluído! ", res)
+                dbpbsc.close()
+            })
+        })
+    }
+    concluir()
+})
+
+app.post('/concluiObj', (req, res) => {
+    var objetivo = new dbModelObj(req.body)
+    console.log("Chegou no servidor o pedidod para concluir ID " + objetivo._id)
+    function concluir() {
+        MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
+            if (err) throw err
+            var dbo = dbpbsc.db("dbpbsc")
+            var busca = { _id: ObjectID(objetivo._id) }
+            var atualizar = { $set: { objStat: '3 - Concluído' } }
+            dbo.collection("collobjs").findOneAndUpdate(busca, atualizar, function(err, res) {
+                if (err) throw err
+                console.log("ID " + objetivo._id + " marcado como concluído! ", res)
+                dbpbsc.close()
+            })
+        })
+    }
+    concluir()
+})
+
+app.post('/andarAtiv', (req, res) => {
+    var atividade = new dbModelAtiv(req.body)
+    console.log("Chegou no servidor o pedidod para andar ID " + atividade._id)
+    function andar() {
+        MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
+            if (err) throw err
+            var dbo = dbpbsc.db("dbpbsc")
+            var busca = { _id: ObjectID(atividade._id) }
+            var atualizar = { $set: { ativStat: '2 - Em Andamento' } }
+            dbo.collection("collativs").findOneAndUpdate(busca, atualizar, function(err, res) {
+                if (err) throw err
+                console.log("ID " + atividade._id + " marcado como em andamento! ", res)
+                dbpbsc.close()
+            })
+        })
+    }
+    andar()
+})
+
+app.post('/andarIni', (req, res) => {
+    var iniciativa = new dbModelIni(req.body)
+    console.log("Chegou no servidor o pedidod para andar ID " + iniciativa._id)
+    function andar() {
+        MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
+            if (err) throw err
+            var dbo = dbpbsc.db("dbpbsc")
+            var busca = { _id: ObjectID(iniciativa._id) }
+            var atualizar = { $set: { iniStat: '2 - Em Andamento' } }
+            dbo.collection("collinis").findOneAndUpdate(busca, atualizar, function(err, res) {
+                if (err) throw err
+                console.log("ID " + iniciativa._id + " marcado como em andamento! ", res)
+                dbpbsc.close()
+            })
+        })
+    }
+    andar()
+})
+
+app.post('/andarObj', (req, res) => {
+    var objetivo = new dbModelObj(req.body)
+    console.log("Chegou no servidor o pedidod para andar ID " + objetivo._id)
+    function andar() {
+        MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
+            if (err) throw err
+            var dbo = dbpbsc.db("dbpbsc")
+            var busca = { _id: ObjectID(objetivo._id) }
+            var atualizar = { $set: { objStat: '2 - Em Andamento' } }
+            dbo.collection("collobjs").findOneAndUpdate(busca, atualizar, function(err, res) {
+                if (err) throw err
+                console.log("ID " + objetivo._id + " marcado como concluído! ", res)
+                dbpbsc.close()
+            })
+        })
+    }
+    andar()
 })
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true}, function(err, dbpbsc) {
