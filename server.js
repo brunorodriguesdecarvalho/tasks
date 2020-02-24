@@ -142,16 +142,21 @@ app.post('/objetivos', (req, res) => {
     console.log('Novo objetivo salvo no MongoDB.')
 })
 
+var MongoClient = require('mongodb').MongoClient
+var ObjectID = require('mongodb').ObjectID
+var url = "mongodb+srv://pbsc:wlmvccE6paAmpBNg@dbpbsc-mzrlo.mongodb.net/dbpbsc?retryWrites=true&w=majority";
+
 app.post('/deletaAtiv', (req, res) => {
-    var atividade = dbModelAtiv(req.body)
+    var atividade = new dbModelAtiv(req.body)
+    console.log("Chegou no servidor o pedidod para apagar ID " + atividade._id)
     function deletar() {
         MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
             if (err) throw err
             var dbo = dbpbsc.db("dbpbsc")
-            var busca = { _id: atividade }
+            var busca = { _id: ObjectID(atividade._id) }
             dbo.collection("collativs").deleteOne(busca, function(err, res) {
                 if (err) throw err
-                console.log("Documento deletado! ", res)
+                console.log("ID " + atividade._id + " deletado! ", res)
                 dbpbsc.close()
             })
         })

@@ -27,7 +27,7 @@ function listarAtividades(atividades){
                 ${atividades.ativNome}
             </div>
         </div>
-        <ul class="item">
+        <ul class="item">       
             <li><strong>Iniciativa associada: </strong>${atividades.ativIni}</li>
             <li id="Stat-${atividades.ativStat}" data-value="${atividades.ativStat}">
                 <strong>Status atual: </strong>${atividades.ativStat}
@@ -37,6 +37,10 @@ function listarAtividades(atividades){
             <li><strong>Motivo(s): </strong>${atividades.ativMot}</li>
             <li><strong>Risco(s): </strong>${atividades.ativRisk}</li>
             <li>Início: ${atividades.ativDataCria}</li>
+            <li>ID: ${atividades._id}</li>
+            <li>
+                <a href="#" onclick="javascript: excluirAtividade('${atividades._id}')">Excluir</a>
+            </li>
         </ul>
         <script>
             function hello() {
