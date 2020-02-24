@@ -43,6 +43,14 @@ function listarAtividades(atividades){
                 <a href="#" onclick="javascript: excluirAtividade('${atividades._id}')">
                     <i class="material-icons" style="font-size: 31px">&#xe92b;</i>
                     <strong>Excluir</strong>
+                </a> 
+                <a href="#" onclick="javascript: concluirAtividade('${atividades._id}')">
+                    <span class="fas" style="font-size: 28px">&#xf058;</span>
+                    <strong>Concluir</strong>
+                </a>
+                <a href="#" onclick="javascript: andarAtividade('${atividades._id}')">
+                    <span class="fas" style="font-size: 28px">&#xf04b;</span>
+                    <strong>Em Andamento</strong>
                 </a>
             </li>
         </ul>

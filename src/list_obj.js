@@ -38,10 +38,19 @@ function listarObjetivos(objetivos){
             <li><strong>Motivo(s): </strong>${objetivos.objMot}</li>
             <li><strong>Risco(s): </strong>${objetivos.objRisk}</li>
             <li>Início: ${objetivos.objDataCria}</li>
+            <br>
             <li>
                 <a href="#" onclick="javascript: excluirObjetivo('${objetivos._id}')">
                     <i class="material-icons" style="font-size: 31px">&#xe92b;</i>
                     <strong>Excluir</strong>
+                </a>
+                <a href="#" onclick="javascript: concluirObjetivo('${objetivos._id}')">
+                    <span class="fas" style="font-size: 28px">&#xf058;</span>
+                    <strong>Concluir</strong>
+                </a>
+                <a href="#" onclick="javascript: andarObjetivo('${objetivos._id}')">
+                    <span class="fas" style="font-size: 28px">&#xf04b;</span>
+                    <strong>Em Andamento</strong>
                 </a>
             </li>
         </ul>
