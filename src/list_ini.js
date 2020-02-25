@@ -47,11 +47,11 @@ function listarIniciativas(iniciativas){
                     <strong>Excluir</strong>
                 </a>
                 <a href="#" onclick="javascript: concluirIniciativa('${iniciativas._id}')">
-                    <span class="fas" style="font-size: 28px">&#xf058;</span>
+                    <span class="fas" style="font-size: 24px">&#xf058;</span>
                     <strong>Concluir</strong>
                 </a>
                 <a href="#" onclick="javascript: andarIniciativa('${iniciativas._id}')">
-                    <span class="fas" style="font-size: 28px">&#xf04b;</span>
+                    <span class="fas" style="font-size: 24px">&#xf04b;</span>
                     <strong>Iniciar</strong>
                 </a>
             </li>

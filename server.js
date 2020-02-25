@@ -207,7 +207,10 @@ app.post('/concluiAtiv', (req, res) => {
             if (err) throw err
             var dbo = dbpbsc.db("dbpbsc")
             var busca = { _id: ObjectID(atividade._id) }
-            var atualizar = { $set: { ativStat: '3 - Concluído' } }
+            var atualizar = {
+                $set: { ativStat: '3 - Concluído' },
+                $currentDate: { ativDataFim: true }
+            }
             dbo.collection("collativs").findOneAndUpdate(busca, atualizar, function(err, res) {
                 if (err) throw err
                 console.log("ID " + atividade._id + " marcado como concluído! ", res)
@@ -226,7 +229,7 @@ app.post('/concluiIni', (req, res) => {
             if (err) throw err
             var dbo = dbpbsc.db("dbpbsc")
             var busca = { _id: ObjectID(iniciativa._id) }
-            var atualizar = { $set: { iniStat: '3 - Concluído' } }
+            var atualizar = { $set: { iniStat: '3 - Concluído' }, $currentDate: { iniDataFim: true } }
             dbo.collection("collinis").findOneAndUpdate(busca, atualizar, function(err, res) {
                 if (err) throw err
                 console.log("ID " + iniciativa._id + " marcado como concluído! ", res)
@@ -245,7 +248,7 @@ app.post('/concluiObj', (req, res) => {
             if (err) throw err
             var dbo = dbpbsc.db("dbpbsc")
             var busca = { _id: ObjectID(objetivo._id) }
-            var atualizar = { $set: { objStat: '3 - Concluído' } }
+            var atualizar = { $set: { objStat: '3 - Concluído' }, $currentDate: { objDataFim: true } }
             dbo.collection("collobjs").findOneAndUpdate(busca, atualizar, function(err, res) {
                 if (err) throw err
                 console.log("ID " + objetivo._id + " marcado como concluído! ", res)
