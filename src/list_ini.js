@@ -52,7 +52,7 @@ function listarIniciativas(iniciativas){
                 </a>
                 <a href="#" onclick="javascript: andarIniciativa('${iniciativas._id}')">
                     <span class="fas" style="font-size: 28px">&#xf04b;</span>
-                    <strong>Em Andamento</strong>
+                    <strong>Iniciar</strong>
                 </a>
             </li>
         </ul>

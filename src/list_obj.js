@@ -53,7 +53,7 @@ function listarObjetivos(objetivos){
                 </a>
                 <a href="#" onclick="javascript: andarObjetivo('${objetivos._id}')">
                     <span class="fas" style="font-size: 28px">&#xf04b;</span>
-                    <strong>Em Andamento</strong>
+                    <strong>Iniciar</strong>
                 </a>
             </li>
         </ul>

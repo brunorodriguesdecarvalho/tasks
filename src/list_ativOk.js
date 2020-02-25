@@ -52,7 +52,7 @@ function listarAtividades(atividades){
                 </a>
                 <a href="#" onclick="javascript: andarAtividade('${atividades._id}')">
                     <span class="fas" style="font-size: 28px">&#xf04b;</span>
-                    <strong>Em Andamento</strong>
+                    <strong>Iniciar</strong>
                 </a>
             </li>
         </ul>
