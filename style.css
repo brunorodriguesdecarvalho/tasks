@@ -1,5 +1,6 @@
 * {transition: all 300ms ease-in-out; font-family: Arial; vertical-align: middle;} 
 body {margin: 0px; background-color: white; color: black;}
+.mainlogo {display: block; margin-left: auto; margin-right: auto; width: 35%;}
 h3 {text-align: center;}
 a {text-decoration: none;text-decoration: none; padding: 10px; color: black}
 a:link, #Enviar:link, a:visited, #Enviar:visited { text-decoration: none;}
