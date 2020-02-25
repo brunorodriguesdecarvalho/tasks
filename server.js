@@ -67,6 +67,30 @@ app.get('/atividades/ok', (req, res) => {
     }).sort(ordem)
 })
 
+app.get('/atividades/pbsc', (req, res) => {
+    var ordem = { ativDataFim: 1, ativDataCria: -1, ativNome: 1 }
+    var busca = { $and: [
+        {ativIni: "PBSCv3"},
+        {ativStat: {'$regex' : '^((?!3 - Concluído).)*$', '$options' : 'i'} }
+    ]}
+    dbModelAtiv.find(busca, (err, atividades) => {
+        if (err) throw err
+        res.send(atividades)    
+    }).sort(ordem)
+})
+
+app.get('/atividades/nonpbsc', (req, res) => {
+    var ordem = { ativDataFim: 1, ativDataCria: -1, ativNome: 1 }
+    var busca = { $and: [
+        {ativIni: {'$regex' : '^((?!PBSCv3).)*$', '$options' : 'i'} },
+        {ativStat: {'$regex' : '^((?!3 - Concluído).)*$', '$options' : 'i'} }
+    ]}
+    dbModelAtiv.find(busca, (err, atividades) => {
+        if (err) throw err
+        res.send(atividades)    
+    }).sort(ordem)
+})
+
 app.get('/iniciativas', (req, res) => {
     var ordem = { iniObj: -1, iniDataFim: -1, iniStat: 1,  iniDataCria: 1, iniNome: 1 }
     dbModelIni.find({}, (err, iniciativas) => {
