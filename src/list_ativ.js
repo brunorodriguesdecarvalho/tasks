@@ -18,6 +18,7 @@ function listarAtividades(atividades){
                     border-radius:30px;
                     vertical-align: middle;
                 ">
+                    
                 </div>
                 <div class="celula" style="
                     vertical-align: middle;
