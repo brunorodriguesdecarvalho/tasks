@@ -4,6 +4,7 @@ const app = express()
 var http = require('http').Server(app) //chama a biblioteca http e cria um servidor com app
 var mongoose = require('mongoose') //importa o mongoose para conectar com o o db
 const port = process.env.PORT || 3000
+var io = require('socket.io')(http)
 
 app.use(express.static('./'))
 app.use(bodyParser.json()) //usa o bodyparse importado para cuidar do JSON
@@ -338,6 +339,12 @@ app.post('/andarObj', (req, res) => {
         })
     }
     andar()
+})
+
+io.on('connection', function(socket) {
+    socket.on('formulario', function(msg){
+        console.log('Título do registro gravado: !', msg) 
+    })
 })
 
 mongoose.connect(dbUrl, { useNewUrlParser: true, useUnifiedTopology: true}, function(err, dbpbsc) {
