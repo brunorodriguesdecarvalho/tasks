@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>P_BSC | Nova Corrida</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="./../../img/ico_wh.png">
+        <link rel="stylesheet" type="text/css" href="estilo.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/poppen.js"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <script src="./src/paceCalc.js"></script>
+    </head>
+    <body>
+        <div id="bkgPaceApp">
+            <div id="mainPaceApp">
+                <h1>TEMPO/DISTÂNCIA=PACE</h1>
+                <div class="Calc">
+                    <div class="CalcVisor">
+                        <div class="TimeInputCell">
+                            <h3>Pace Médio:&nbsp;</h3> 
+                        </div>   
+                        <div id="totPcM" class="TimeInputCell">...0:00 min/km</div>
+                    </div>
+
+                    <h2>Dados para o cálculo:</h2>
+                    <div>
+                        <div class="TimeInputCell">
+                            Km: <input 
+                            type="number" 
+                            id="inputKM" 
+                            placeholder="Km"
+                            required
+                        ></div>
+                        <div class="TimeInputCell">
+                            hh: <input 
+                            type="number" 
+                            id="inputH" 
+                            placeholder="hh"
+                        ></div>
+                        <div class="TimeInputCell">
+                            mm: <input 
+                            type="number" 
+                            id="inputM" 
+                            placeholder="mm"
+                            required
+                        ></div>
+                        <div class="TimeInputCell">
+                            ss: <input 
+                            type="number" 
+                            id="inputS" 
+                            placeholder="ss"
+                            required
+                        ></div>
+                    </div>
+                    <div class="legenda"><strong>Legenda</strong>
+                        <br>
+                        <span><strong>Km:</strong> <em>Distância em Km (obrigatório)</em></span>
+                        <br>
+                        <span><strong>hh:</strong> <em>Horas (se houver)</em></span>
+                        <br>
+                        <span><strong>mm:</strong> <em>Minutos (obrigatório)</em></span>
+                        <br>
+                        <span><strong>ss:</strong> <em>Segundos (obrigatório)</em></span>
+                    </div>
+                    <button onclick="Calcular()">Calcular</button>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

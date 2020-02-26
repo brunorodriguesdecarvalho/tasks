@@ -1,0 +1,97 @@
+* {transition: all 300ms ease-in-out;} 
+
+:root {
+    overflow: hidden;
+    background-color: #000;
+    font-size: 24px;
+}
+
+@media(max-width: 700px) {
+    :root {font-size: 28px;};
+}
+
+body{
+    margin: 0px auto;
+}
+
+h1, h2, h3 {
+    margin-top: 2vh; 
+    margin-bottom: 2vh;
+}
+h1 {
+    font-size: 2.5rem;
+    color: rgb(0, 0, 0);
+    text-shadow: 0px 0px 4px rgba(185, 185, 185, 0.85);
+}
+h2 {font-size: 2rem;}
+h3 {display: inline; font-size: 1.5rem;}
+
+#bkgPaceApp {
+    background-image: url(./img/eliud_bw.jpeg);
+    height: 100vh;
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+#mainPaceApp {
+    position: absolute;
+    max-width: 100%;
+    width: 75%;
+    background-color: rgba(255, 255, 255, 0.75);
+    max-height: 80%;
+    min-height: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2vw 2vh;
+}
+
+div.Calc {
+    border: 1px dotted white;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.75);
+    font-size: 1rem;
+    color: #fff;
+}
+
+div.TimeInputCell {
+    display: inline;
+}
+
+div.CalcVisor {
+    padding: 6px;
+    background-color: #05193E;
+    color: white;
+    margin-bottom: 8px;
+}
+
+#totPcM {
+    display: inline;
+}
+
+#inputKM, #inputH, #inputM, #inputM, #inputS {
+    width: 9vw;
+    height: 4vh;
+    border-width: 0px;
+    background-color: rgba(255, 255, 255, 1);
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+}
+
+div.legenda {
+    margin-top: 6px;
+    margin-bottom: 12px;
+}
+
+button {
+    width: 100%;
+    border-width: 0px;
+    background-color: #05193E;
+    color: white;
+    padding: 8px;
+    font-weight: bold;
+    font-size: 1.25rem;
+}

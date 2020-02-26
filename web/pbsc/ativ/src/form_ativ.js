@@ -41,7 +41,7 @@ function listarAtividades(atividades){
             <li><strong>Motivo(s): </strong>${atividades.ativMot}</li>
             <li><strong>Risco(s): </strong>${atividades.ativRisk}</li>
             <li>
-                <script src="src/apagaAtiv.js" type="text/javascript"></script>
+                <script src="./src/apagaAtiv.js" type="text/javascript"></script>
                 <button id="excluir" onclick="javascript: apagaAt()">
                     excluir
                 </button>
