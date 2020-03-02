@@ -1,11 +1,11 @@
 //Começo da lista de status - para Iniciativas
     var dropdown = document.getElementById('iniStat');
     dropdown.length = 0
-
+/*
     let defaultOption = document.createElement('option');
     defaultOption.text = 'Não atribuído';
 
-    dropdown.add(defaultOption);
+    dropdown.add(defaultOption);*/
     dropdown.selectedIndex = 0;
 
     var url = 'https://tasksbruno.herokuapp.com/ragstatus';
