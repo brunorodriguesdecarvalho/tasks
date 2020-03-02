@@ -2,10 +2,10 @@
     var dropdown = document.getElementById('ativStat');
     dropdown.length = 0
 
-    let defaultOption = document.createElement('option');
+    /*let defaultOption = document.createElement('option');
     defaultOption.text = 'Não atribuído';
 
-    dropdown.add(defaultOption);
+    dropdown.add(defaultOption);*/
     dropdown.selectedIndex = 0;
 
     var url = 'https://tasksbruno.herokuapp.com/ragstatus';
