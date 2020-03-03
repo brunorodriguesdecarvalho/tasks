@@ -1,15 +1,8 @@
 //Começo lista iniciativas - para Iniciativas
-var dropdownIni = document.getElementsByClassName('ativIni');
+var dropdownIni = document.getElementById('ativIni');
 console.log(dropdownIni.length)
 var option = document.createElement("option");
-
-//dropdownIni.length = 0
-
-/* let defaultOptionIni = document.createElement('option');
-defaultOptionIni.text = 'Não atribuído';
-
-dropdownIni.add(defaultOptionIni);
-dropdownIni.selectedIndex = 0;
+dropdownIni.length = 1
 
 var urlIni = 'https://tasksbruno.herokuapp.com/listIni';
 
@@ -39,4 +32,3 @@ fetch(urlIni)
 .catch(function(err) {
     console.error("Erro de Fetch -", err)
 })
-*/
