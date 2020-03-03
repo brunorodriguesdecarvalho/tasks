@@ -341,6 +341,51 @@ app.post('/andarObj', (req, res) => {
     andar()
 })
 
+app.post('/web/pbsc/ativ/atividades/buscaID', (req, res) => {
+    var dados = new dbModelAtiv(req.body)
+    var ativID = dados._id
+    console.log("tentando buscar", ativID)
+    var busca = { _id: ativID }
+    dbModelAtiv.findOne(busca, (err, atividades) => {
+        if (err) throw err
+        var nomelido = atividades.ativNome
+        res.render('/web/pbsc/ativ/edit_ativ', function (err, atividades) {
+            if (err) throw err
+            res.send(atividades)
+        })
+        console.log("nomelido: ", nomelido)
+    })
+})
+
+app.post('/gravarAtiv', (req, res) => {
+    var atividade = new dbModelAtiv(req.body)
+    console.log("Chegou no servidor o pedido para alterar ID " + atividade._id)
+    function gravar() {
+        MongoClient.connect(url, {useUnifiedTopology: true}, function(err, dbpbsc) {
+            if (err) throw err
+            var dbo = dbpbsc.db("dbpbsc")
+            var busca = { _id: ObjectID(atividade._id) }
+            var atualizar = {
+                $set: { 
+                    ativNome: atividade.ativNome,
+                    ativIni: atividade.ativIni,
+                    ativStat: atividade.ativStat,
+                    ativDesc: atividade.ativDesc,
+                    ativMot: atividade.ativMot,
+                    ativRisk: atividade.ativRisk,
+                }
+            }
+            dbo.collection("collativs").findOneAndUpdate(busca, atualizar, function(err, res) {
+                if (err) throw err
+                console.log("ID " + atividade._id + " editado com sucesso! ", res)
+                dbpbsc.close()
+            })
+        })
+    }
+    gravar()
+    res.redirect(req.get('referer'));
+})
+
 io.on('connection', function(socket) {
     socket.on('formulario', function(msg){
         console.log('Título do registro gravado: !', msg) 
