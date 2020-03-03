@@ -30,7 +30,7 @@ function listarAtividades(atividades){
                         <strong>Iniciativa associada: </strong>
                     </div>
                     <div class="celula">
-                        <select id="ativIni">
+                        <select id="ativIni" class="ativIni">
                             <option>${atividades.ativIni}</option>
                         </select>
                     </div>
@@ -40,8 +40,8 @@ function listarAtividades(atividades){
                         <strong>Status atual: </strong>
                     </div>
                     <div class="celula">
-                        <select id="ativStat" class="status" data-value="${atividades.ativStat}">
-                            <option selected>${atividades.ativStat}</option>
+                        <select id="status-${atividades._id}" class="status">
+                            <option>${atividades.ativStat}</option>
                         </select>
                     </div>
                 </div>
@@ -90,20 +90,6 @@ function listarAtividades(atividades){
             </div>
             </form>
         </ul>
-        <script src="./src/drop_stat_ativ.js"></script>
-        <script src="./src/drop_ini.js"></script>
-        <script>    
-            function hello() {
-                var valorStat = document.getElementById("ativStat").getAttribute("data-value");
-                if (valorStat == "-1: Urgente") document.getElementById('bola-${atividades._id}').style.backgroundColor='#DC0000';
-                else if (valorStat == "0 - Atrasado") document.getElementById('bola-${atividades._id}').style.backgroundColor='#DCA000' 
-                else if (valorStat == "1 - Não Iniciado") document.getElementById('bola-${atividades._id}').style.backgroundColor='#000000'
-                else if (valorStat == "2 - Em Andamento") document.getElementById('bola-${atividades._id}').style.backgroundColor='#009600'
-                else if(valorStat == "3 - Concluído") document.getElementById('bola-${atividades._id}').style.backgroundColor='#00008C'
-            };
-            hello()
-        </script>
-        <script src="../../../../src/selectIniCheck.js"></script>
         <br>
     `)
 }

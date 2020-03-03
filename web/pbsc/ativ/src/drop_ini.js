@@ -1,8 +1,11 @@
 //Começo lista iniciativas - para Iniciativas
-var dropdownIni = document.getElementById('ativIni');
-dropdownIni.length = 0
+var dropdownIni = document.getElementsByClassName('ativIni');
+console.log(dropdownIni.length)
+var option = document.createElement("option");
 
-let defaultOptionIni = document.createElement('option');
+//dropdownIni.length = 0
+
+/* let defaultOptionIni = document.createElement('option');
 defaultOptionIni.text = 'Não atribuído';
 
 dropdownIni.add(defaultOptionIni);
@@ -36,3 +39,4 @@ fetch(urlIni)
 .catch(function(err) {
     console.error("Erro de Fetch -", err)
 })
+*/
