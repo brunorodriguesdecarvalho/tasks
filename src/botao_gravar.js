@@ -5,7 +5,7 @@ function editarAtividade() {
     var atividades = { 
         ativNome: document.getElementById("ativNome").value,
         ativIni: document.getElementById("ativIni").options[document.getElementById("ativIni").selectedIndex].value,
-        ativStat: statusBox.options[statusBox.selectedIndex].text,
+        ativStat: document.getElementById("ativStat").options[document.getElementById("ativStat").selectedIndex].value,
         ativDesc: document.getElementById("ativDesc").value,
         ativMot: document.getElementById("ativMot").value,
         ativRisk: document.getElementById("ativRisk").value,

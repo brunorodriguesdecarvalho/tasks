@@ -40,7 +40,7 @@ function listarAtividades(atividades){
                         <strong>Status atual: </strong>
                     </div>
                     <div class="celula">
-                        <select id="status-${atividades._id}" class="status">
+                        <select id="status-${atividades._id}" class="ativStat">
                             <option>${atividades.ativStat}</option>
                         </select>
                     </div>
