@@ -93,7 +93,7 @@ app.get('/atividades/nonpbsc', (req, res) => {
 })
 
 app.get('/iniciativas', (req, res) => {
-    var ordem = { iniObj: -1, iniDataFim: -1, iniStat: 1,  iniDataCria: 1, iniNome: 1 }
+    var ordem = { iniDataFim: 1, iniObj: -1, iniStat: 1,  iniDataCria: 1, iniNome: 1 }
     dbModelIni.find({}, (err, iniciativas) => {
         if (err) throw err
         res.send(iniciativas)    
