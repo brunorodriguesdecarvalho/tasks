@@ -1,7 +1,7 @@
 const express = require('express')
 var bodyParser = require('body-parser') //importar o bodyparser para lidar com as arrays
 const app = express()
-var http = require('https').Server(app) //chama a biblioteca http e cria um servidor com app
+var http = require('http').Server(app) //chama a biblioteca http e cria um servidor com app
 var mongoose = require('mongoose') //importa o mongoose para conectar com o o db
 const port = process.env.PORT || 3000
 var io = require('socket.io')(http)
